@@ -1,0 +1,22 @@
+name: Delete ZIP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  remove_zip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Remove ZIP
+        run: |
+          rm language_trainer_ai.zip
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git commit -am "Remove zip file"
+          git push
